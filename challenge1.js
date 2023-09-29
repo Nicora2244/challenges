@@ -32,4 +32,4 @@ const determinarParImpar = (numero) => {
     }
 };
 
-determinarParImpar(5);
+determinarParImpar(5); 
