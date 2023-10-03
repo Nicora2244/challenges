@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import MyFirstApp from './MyFirstApp';
+import ComponentApp from './ComponentApp';
 // import './index.css';
 // import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MyFirstApp value = {0}/>
+    <ComponentApp/>
   </React.StrictMode>
 );
