@@ -1,5 +1,3 @@
-// challenge - 04
-
 import { useState } from 'react';
 
 export const GifExpertApp = () => {
