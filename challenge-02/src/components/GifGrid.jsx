@@ -1,19 +1,33 @@
-export const getGifs = async ( category ) => {
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=Bh98ua6p1Qthm3gMIWnfAO2nvuDa2cP1&q=${category}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
-    const resp = await fetch( url )
-    const { data } = await resp.json()
-    const gifs = data.map( img => {
-        return {
-            id: img.id,
-            title: img.title,
-            url: img.images.fixed_width.url
-        }
-    })
-    
-    return gifs
-    
-}
+import { getGifs } from "../helpers/getGifs";
+import { useEffect, useState } from "react";
+import { GifItem, gifItem } from "./GifItem"; 
 
+export const GifGrid = ({category}) => {
+    const [images, setImages] = useState([]);
+
+    const getImages = async() => {
+        const images = await getGifs(category)
+        setImages(images);
+    }
+
+    useEffect(() => {
+        getImages();
+    })
+
+    return (
+        <>
+            <h3>{category}</h3>
+            <div className="card-grid">
+                {
+                    images.map((image, key) => {
+                        return <GifItem key={key} {...image}></GifItem>
+                    })
+                }
+            </div>
+        </>
+    )
+}
+/*
 export const GifGrid = ({category}) => {
 
     getGifs( category )
@@ -25,3 +39,4 @@ export const GifGrid = ({category}) => {
         </>
     )
 }
+*/
