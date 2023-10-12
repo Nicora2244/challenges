@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import useCounter from './components/UseCounter';
+
 
 export const GifExpertApp = () => {
     const [categories, setCategories] = useState(['first category']);
@@ -13,9 +15,12 @@ export const GifExpertApp = () => {
         setCategory(evt.target.value);
     };
 
+    const { count, increment, decrement, reset } = useCounter();
+
     return (
         <>
             <h1>GifExpert</h1>
+            <h1>Counter: {count}</h1>
             <input 
                 type="text" 
                 value={category} 
@@ -23,6 +28,9 @@ export const GifExpertApp = () => {
                 placeholder='Enter Category'
             />
             <button onClick={onAddCategory}>Add Category</button>
+            <button onClick={increment}>Increment</button>
+            <button onClick={decrement}>Decrement</button>
+            <button onClick={reset}>Reset</button>
             <ol>
                 {
                     categories.map((cat, key) => (
