@@ -6,7 +6,7 @@ import GifExpertApp from './GiftExpertApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+ 
     <GifExpertApp/>
-  </React.StrictMode>
+  
 );

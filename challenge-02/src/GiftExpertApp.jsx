@@ -1,19 +1,15 @@
 import { useState } from 'react';
 import useCounter from './components/UseCounter';
+import { AddCategory } from "./components/AddCategory"
+import { GifGrid } from "./components/GifGrid"
 
+export const GiftExpertApp = () => {
 
-export const GifExpertApp = () => {
-    const [categories, setCategories] = useState(['first category']);
-    const [category, setCategory] = useState('');
+    const [categories, setCategories] = useState(['Zodiac'])
 
-    const onAddCategory = () => {
-            setCategories(list => [...list, category]);
-            setCategory('');
-    };
-
-    const onSetCategory = (evt) => {
-        setCategory(evt.target.value);
-    };
+    const onAddCategory = ( category ) => {
+        setCategories( list => [...list, category])
+    }
 
     const { count, increment, decrement, reset } = useCounter();
 
@@ -21,25 +17,20 @@ export const GifExpertApp = () => {
         <>
             <h1>GifExpert</h1>
             <h1>Counter: {count}</h1>
-            <input 
-                type="text" 
-                value={category} 
-                onChange={(event) => onSetCategory(event)} 
-                placeholder='Enter Category'
-            />
-            <button onClick={onAddCategory}>Add Category</button>
             <button onClick={increment}>Increment</button>
             <button onClick={decrement}>Decrement</button>
             <button onClick={reset}>Reset</button>
-            <ol>
+            <AddCategory onAddCategory = {onAddCategory} />
                 {
-                    categories.map((cat, key) => (
-                        <li key={key}>{cat}</li>
-                    ))
+                    categories.map(
+                        (category, key) =>
+                            {
+                                return <GifGrid category = { category } key = {key} />
+                            }
+                    )
                 }
-            </ol>
         </>
     );
 }
 
-export default GifExpertApp;
+export default GiftExpertApp;
