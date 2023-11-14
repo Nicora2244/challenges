@@ -1,4 +1,4 @@
-import { getGifs } from "../helpers/getGifs";
+import { getGifs } from "../helpers/GetGifs";
 import { useEffect, useState } from "react";
 import { GifItem, gifItem } from "./GifItem"; 
 
