@@ -18,3 +18,4 @@ export const useFetchGifs = ( category ) => {
         isLoading: false
     }
 }
+
