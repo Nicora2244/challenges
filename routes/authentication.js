@@ -1,25 +1,25 @@
 const { Router } = require("express");
 const router = Router();
 const {
-  crearUsuario,
-  loginUsuario,
-  revalidarToken,
+  createUser,
+  loginUser,
+  validateToken,
   register,
-} = require("../Controllers/auth");
+} = require("../Controllers/authentication.js");
 const { check } = require("express-validator");
-const { validarCampos } = require("../middlewares/validar-campos.js");
+const { validateFields } = require("../middlewares/validateCampus.js");
 
-router.post("/", loginUsuario);
+router.post("/", loginUser);
 
 router.post(
   "/new",
   [
     check("name", "El nombre es obligatorio").not().isEmpty(),
     check("email", "El email es obligatorio").isEmail(),
-    check("password", "la constra tiene que ser >= 6 bro").isLength({ min: 6 }),
-    validarCampos
+    check("password", "La contraseña necesita tener mas de 6 digitos").isLength({ min: 6 }),
+    validateFields
   ],
-  crearUsuario
+  createUser
 );
 
 router.post(
@@ -27,11 +27,11 @@ router.post(
   [
     check("name", "El nombre es obligatorio").not().isEmpty(),
     check("email", "El email es obligatorio").isEmail(),
-    check("password", "la constra tiene que ser >= 6 bro").isLength({ min: 6 }),
-    validarCampos,
+    check("password", "La contraseña necesita tener mas de 6 digitos").isLength({ min: 6 }),
+    validateFields,
   ],
   register
 );
-router.get("/renew", revalidarToken);
+router.get("/renew", validateToken);
 
 module.exports = router;
